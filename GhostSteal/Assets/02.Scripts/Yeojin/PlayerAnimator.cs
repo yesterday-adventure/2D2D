@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAnimator : MonoBehaviour
 {
     private readonly int isMove = Animator.StringToHash("Walking");
+    private readonly int isSteal = Animator.StringToHash("Stolen"); // ¸ö »¯±ä °Å
 
     private Animator animator;
 
@@ -16,5 +17,10 @@ public class PlayerAnimator : MonoBehaviour
     public void SetMove(bool value)
     {
         animator.SetBool(isMove, value);
+    }
+
+    public void SetStolen()
+    {
+        animator.SetTrigger(isSteal);
     }
 }
