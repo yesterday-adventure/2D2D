@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
+    [SerializeField] private GameObject target; // 추후 삭제
 
     private bool isMove = false;
     private bool isRun = false; // 초기에는 false
@@ -29,7 +30,7 @@ public class PlayerInput : MonoBehaviour
             //isAttack = true;
             //StartCoroutine(Climbing());
             //StartCoroutine(Attacking());
-            //animator.SetDie();
+            target.transform.GetComponentInChildren<PlayerAnimator>().SetDie();
         }
 
         if (Input.GetKeyDown(KeyCode.Space)) // Debug용, 키 바꿔도 됨
