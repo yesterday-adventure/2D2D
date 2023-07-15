@@ -6,7 +6,7 @@ public class PlayerAnimator : MonoBehaviour
 {
     private readonly int isMove = Animator.StringToHash("Walking");
     private readonly int isRun = Animator.StringToHash("Running");
-    private readonly int isSteal = Animator.StringToHash("Stolen"); // ¸ö »¯±ä °Å
+    private readonly int isSteal = Animator.StringToHash("Die"); // ¿¡³Ê¹Ì¸¸
 
     private Animator animator;
 
@@ -25,7 +25,7 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetBool(isRun, value);
     }
 
-    public void SetStolen()
+    public void SetDie()
     {
         animator.SetTrigger(isSteal);
     }

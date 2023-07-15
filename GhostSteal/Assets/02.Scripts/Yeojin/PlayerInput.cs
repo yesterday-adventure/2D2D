@@ -7,15 +7,12 @@ public class PlayerInput : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
     [SerializeField] private float distance = 3f;
-    
+
     private bool isMove;
-    private bool isEnemy;
+    private bool isRun;
 
     private SpriteRenderer sr;
     private PlayerAnimator animator;
-
-    [SerializeField] private LayerMask targetLayer;
-    private Transform target;
 
     private void Awake()
     {
@@ -25,47 +22,33 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-        /*
-        // enemy debug
-        if(Input.GetKeyDown(KeyCode.Space) && isEnemy)
+        if (Input.GetKeyDown(KeyCode.Space)) // Debug
         {
-            PlayerAnimator targetAnim = target.transform.Find("Visual").GetComponent<PlayerAnimator>();
-            targetAnim.SetStolen();
+            isRun = !isRun;
         }
-        CheckEnemy();
-        */
-
-
         Move();
-    }
-
-    private void CheckEnemy()
-    {
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, distance, targetLayer);
-        foreach (Collider2D enemy in enemies)
-        {
-            Debug.Log("Enemy 감지");
-            target = enemy.transform;
-            isEnemy = true;
-        }
     }
 
     private void Move()
     {
         float h = Input.GetAxisRaw("Horizontal");
 
-        isMove = (h != 0);
+        bool checkMoving = h != 0;
+        isMove = checkMoving;
         if (h != 0) sr.flipX = (h < 0);
 
-        animator.SetMove(isMove);
-        transform.position += Vector3.right * h * Time.deltaTime * speed;
-    }
+        if (!checkMoving)
+        {
+            animator.SetMove(checkMoving);
+            animator.SetRun(checkMoving);
+        }
+        else
+        {
+            animator.SetMove(isMove);
+            animator.SetRun(isRun);
+        }
 
-#if UNITY_EDITOR
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, distance);
+        float currentSpeed = isRun ? speed * 2 : speed; // 달리는 속도 두 배
+        transform.position += Vector3.right * h * Time.deltaTime * currentSpeed;
     }
-#endif
 }
