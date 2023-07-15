@@ -6,73 +6,77 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
-    [SerializeField] private float distance = 3f;
-    
-    private bool isMove;
-    private bool isEnemy;
+    [SerializeField] private GameObject target; // 추후 삭제
+
+    private bool isMove = false;
+    private bool isRun = false; // 초기에는 false
+    private bool isAttack = false; // 초기에는 false
 
     private SpriteRenderer sr;
     private PlayerAnimator animator;
-
-    [SerializeField] private LayerMask targetLayer;
-    private Transform target;
 
     private void Awake()
     {
         sr = transform.Find("Visual").GetComponent<SpriteRenderer>();
         animator = transform.Find("Visual").GetComponent<PlayerAnimator>();
+
+        isRun = false; // 초기화
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && isEnemy)
+        if(Input.GetKeyDown(KeyCode.K) && !isAttack) // 디버그용
         {
-            PlayerAnimator targetAnim = target.transform.Find("Visual").GetComponent<PlayerAnimator>();
-            targetAnim.SetStolen();
+            //isAttack = true;
+            //StartCoroutine(Climbing());
+            //StartCoroutine(Attacking());
+            target.transform.GetComponentInChildren<PlayerAnimator>().SetDie();
         }
 
-        CheckEnemy();
+        if (Input.GetKeyDown(KeyCode.Space)) // Debug용, 키 바꿔도 됨
+        {
+            isRun = !isRun;
+        }
+
+        if (isAttack) return; // 어택 중일 때 움직이지 않도록, 추후 삭제
         Move();
     }
 
-    private void CheckEnemy()
+    private IEnumerator Attacking() // 추후 삭제
     {
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, distance, targetLayer);
-        foreach (Collider2D enemy in enemies)
-        {
-            Debug.Log("Enemy 감지");
-            target = enemy.transform;
-            isEnemy = true;
-        }
+        animator.SetAttack(true);
+        yield return new WaitForSeconds(0.6f);
+        animator.SetAttack(false);
+        isAttack = false;
+    }
+
+    private IEnumerator Climbing() // 추후 삭제
+    {
+        animator.SetClimb(true);
+        yield return new WaitForSeconds(3f);
+        animator.SetClimb(false);
     }
 
     private void Move()
     {
         float h = Input.GetAxisRaw("Horizontal");
-        
-        if (h < 0)
+
+        bool checkMoving = h != 0;
+        isMove = checkMoving;
+        if (h != 0) sr.flipX = (h < 0);
+
+        if (!checkMoving)
         {
-            isMove = true;
-            sr.flipX = true;
-        }
-        else if (h > 0)
-        {
-            isMove = true;
-            sr.flipX = false;
+            animator.SetMove(checkMoving);
+            animator.SetRun(checkMoving);
         }
         else
         {
-            isMove = false;
+            animator.SetMove(isMove);
+            animator.SetRun(isRun);
         }
-        animator.SetMove(isMove);
-        transform.position += new Vector3(h ,0, 0) * Time.deltaTime * speed;
-    }
 
-#if UNITY_EDITOR
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, distance);
+        float currentSpeed = isRun ? speed * 2 : speed; // 달리는 속도: 원 속도의 두 배로 잡음
+        transform.position += Vector3.right * h * Time.deltaTime * currentSpeed;
     }
-#endif
 }
