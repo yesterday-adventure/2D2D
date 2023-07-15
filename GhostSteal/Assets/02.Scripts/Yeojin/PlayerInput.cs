@@ -33,13 +33,16 @@ public class PlayerInput : MonoBehaviour
             target.transform.GetComponentInChildren<PlayerAnimator>().SetDie();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space)) // Debug용, 키 바꿔도 됨
+        if(!GameManager.Instance.isGameOver) // 플레이어가 살아있을 동안
         {
-            isRun = !isRun;
-        }
+            if (Input.GetKeyDown(KeyCode.Space)) // Debug용, 키 바꿔도 됨
+            {
+                isRun = !isRun;
+            }
 
-        if (isAttack) return; // 어택 중일 때 움직이지 않도록, 추후 삭제
-        Move();
+            if (isAttack) return; // 어택 중일 때 움직이지 않도록, 추후 삭제
+            Move();
+        }
     }
 
     private IEnumerator Attacking() // 추후 삭제
