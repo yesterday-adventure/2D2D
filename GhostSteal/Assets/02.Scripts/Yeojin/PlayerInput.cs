@@ -25,13 +25,17 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
+        /*
+        // enemy debug
         if(Input.GetKeyDown(KeyCode.Space) && isEnemy)
         {
             PlayerAnimator targetAnim = target.transform.Find("Visual").GetComponent<PlayerAnimator>();
             targetAnim.SetStolen();
         }
-
         CheckEnemy();
+        */
+
+
         Move();
     }
 
@@ -49,23 +53,12 @@ public class PlayerInput : MonoBehaviour
     private void Move()
     {
         float h = Input.GetAxisRaw("Horizontal");
-        
-        if (h < 0)
-        {
-            isMove = true;
-            sr.flipX = true;
-        }
-        else if (h > 0)
-        {
-            isMove = true;
-            sr.flipX = false;
-        }
-        else
-        {
-            isMove = false;
-        }
+
+        isMove = (h != 0);
+        if (h != 0) sr.flipX = (h < 0);
+
         animator.SetMove(isMove);
-        transform.position += new Vector3(h ,0, 0) * Time.deltaTime * speed;
+        transform.position += Vector3.right * h * Time.deltaTime * speed;
     }
 
 #if UNITY_EDITOR
