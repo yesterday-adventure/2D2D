@@ -5,6 +5,13 @@ using DG.Tweening;
 
 public class CCTV : MonoBehaviour
 {
+    private GameObject itemAnim;
+
+    private void Awake() {
+        
+        itemAnim = gameObject.transform.GetChild(0).GetComponent<GameObject>();
+    }
+    
     private void Update() {
 
         cctv();

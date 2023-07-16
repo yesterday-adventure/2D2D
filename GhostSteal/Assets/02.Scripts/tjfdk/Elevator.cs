@@ -10,7 +10,7 @@ public class Elevator : MonoBehaviour
 
     private void Awake() {
         
-        itemAnim = GetComponentInChildren<GameObject>();
+        itemAnim = gameObject.transform.GetChild(0).GetComponent<GameObject>();
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
