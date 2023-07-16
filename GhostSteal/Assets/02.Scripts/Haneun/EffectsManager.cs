@@ -10,7 +10,8 @@ public class EffectsManager : MonoBehaviour
     public UnityEvent unityEvent;
 
     public int poolSize = 10;
-    public ParticleSystem[] effects;            // effect 배열로 입력받음
+    //public ParticleSystem[] effects;            // effect 배열로 입력받음... 이였으나
+                                                  // 배열오 입력받지 않고 enum으로 처리할 것
                                                 // object pool 은 부모-자식으로 받아 사용하는거다...
 
 
@@ -53,9 +54,9 @@ public class EffectsManager : MonoBehaviour
     {
         // enum
         
-        ParticleSystem newParticle = Instantiate(effects[0]);   // ParticleSystem 프리팹을 복제하여 새로운 ParticleSystem 생성
-        newParticle.gameObject.SetActive(false);   // 생성된 ParticleSystem을 비활성화
-        particlePool.Add(newParticle);   // 비활성화된 ParticleSystem을 객체 풀에 추가
+        //ParticleSystem newParticle = Instantiate(effects[0]);   // ParticleSystem 프리팹을 복제하여 새로운 ParticleSystem 생성
+        //newParticle.gameObject.SetActive(false);   // 생성된 ParticleSystem을 비활성화
+        //particlePool.Add(newParticle);   // 비활성화된 ParticleSystem을 객체 풀에 추가
     }
 
     public ParticleSystem GetParticle()
