@@ -216,9 +216,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  poolSize: 10
+  poolSize: 5
   effects:
-  - {fileID: 1855885167912854466, guid: 0c35ac8404c2c00439ff0b3823eeb162, type: 3}
   - {fileID: 1855885167912854466, guid: 0c35ac8404c2c00439ff0b3823eeb162, type: 3}
 --- !u!4 &1029812423
 Transform:

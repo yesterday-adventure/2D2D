@@ -11,7 +11,8 @@ public class EffectsManager : MonoBehaviour
 
     public int poolSize = 10;
     public ParticleSystem[] effects;            // effect 배열로 입력받음
-                                                // object pool 은 부모-자식으로 받아 사용하는거다(!!!)
+                                                // object pool 은 부모-자식으로 받아 사용하는거다...
+
 
     List<ParticleSystem> particlePool;  // 비활성화된 ParticleSystem을 보관할 객체 풀
     List<ParticleSystem> activeParticles;  // 활성화된 ParticleSystem을 추적할 리스트
@@ -50,8 +51,8 @@ public class EffectsManager : MonoBehaviour
 
     void CreateParticle()
     {
-        // 딕셔너리로 고치기
-        // 자료구조 중 하나...? 
+        // enum
+        
         ParticleSystem newParticle = Instantiate(effects[0]);   // ParticleSystem 프리팹을 복제하여 새로운 ParticleSystem 생성
         newParticle.gameObject.SetActive(false);   // 생성된 ParticleSystem을 비활성화
         particlePool.Add(newParticle);   // 비활성화된 ParticleSystem을 객체 풀에 추가
