@@ -8,10 +8,24 @@ public class Elevator : MonoBehaviour
     [SerializeField] private GameObject distination;
     private GameObject itemAnim;
 
-    public void elevator() {
+    private void Awake() {
+        
+        itemAnim = GetComponentInChildren<GameObject>();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        
+        if (other.CompareTag("Player")) {
+
+            
+        }
+    }
+
+    public void elevator(GameObject target) {
 
         StartCoroutine(anim());
                 
+        target.transform.position = distination.transform.position;
         //player.transform.position = distination.transform.position;
     }
 
