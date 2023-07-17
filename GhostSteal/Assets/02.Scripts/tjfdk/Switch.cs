@@ -7,20 +7,13 @@ using UnityEngine;
 
 public class Switch : Item
 {
-    private void Awake() {
-        
-        itemAnim = GetComponentInChildren<GameObject>();
-    }
-
-    public void switchh() {
-
-        itemAnim.SetActive(!itemAnim.activeSelf);
-
-        isOn = !isOn;
-    }
+    [SerializeField] private List<CCTV> cctvs = new List<CCTV>();
 
     public override void item() {
 
-        base.item();
+        Anim();
+
+        foreach (CCTV c in cctvs)
+            c.item();
     }
 }

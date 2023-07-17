@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.IO.MemoryMappedFiles;
 using System.Collections;
 using System.Collections.Generic;
@@ -36,7 +37,12 @@ public class Move : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         
-        curItem = other.GetComponent<Item>();
-        curItem.item();
+        Debug.Log("충돌중");
+
+        if (Input.GetKeyDown(KeyCode.Space)) {
+
+            curItem = other.GetComponent<Item>();
+            curItem.item();
+        }
     }
 }

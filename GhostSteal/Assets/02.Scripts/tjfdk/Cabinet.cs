@@ -5,15 +5,20 @@ using UnityEngine;
 
 public class Cabinet : Item
 {
-    public void cavinet(GameObject target) {
+    private Move player;
+    SpriteRenderer s;
+    PolygonCollider2D c;
 
-        target.SetActive(!target.activeSelf);
-        // 못 움직이게
+    private void Awake() {
+        
+        player = GameObject.Find("Player").GetComponent<Move>();
+        s = player.GetComponent<SpriteRenderer>();
+        c = player.GetComponent<PolygonCollider2D>();
     }
-
     public override void item() {
 
-        base.item();
-        Debug.Log("캐비닛 시발");
+        player.canMove = !player.canMove;
+        s.enabled = !s.enabled;
+        c.enabled = !c.enabled;
     }
 }

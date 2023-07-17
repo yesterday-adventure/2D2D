@@ -1,19 +1,20 @@
+using System.ComponentModel;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    public bool isOn;
-    protected GameObject itemAnim;
+    public bool isOn = true;
+    [SerializeField] protected GameObject itemAnim;
 
-    private void Awake() {
-        
-        itemAnim = transform.GetChild(0).GetComponent<GameObject>();
+    public virtual void item() { // 필수 
+
+        // 공통으로 들어가는 게 뭐가 있을까
     }
 
-    public virtual void item() {
+    protected void Anim() {
 
-        
+        itemAnim.SetActive(!itemAnim.activeSelf);
     }
 }
