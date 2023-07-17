@@ -10,6 +10,7 @@ public class Move : MonoBehaviour
 
     private Rigidbody2D rigid;
 
+    [SerializeField] private Item curItem;
     [SerializeField] private float speed;
 
     Vector3 dir;
@@ -35,6 +36,7 @@ public class Move : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         
-        //other의 이벤트 호출?
+        curItem = other.GetComponent<Item>();
+        curItem.item();
     }
 }

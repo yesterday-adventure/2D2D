@@ -5,11 +5,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Switch : MonoBehaviour
+public class Switch : Item
 {
-    public bool isOn = true;
-    private GameObject itemAnim;
-
     private void Awake() {
         
         itemAnim = GetComponentInChildren<GameObject>();
@@ -20,5 +17,10 @@ public class Switch : MonoBehaviour
         itemAnim.SetActive(!itemAnim.activeSelf);
 
         isOn = !isOn;
+    }
+
+    public override void item() {
+
+        base.item();
     }
 }
