@@ -1,24 +1,18 @@
+using System.Text;
 using System.Security.Cryptography.X509Certificates;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Elevator : MonoBehaviour
+public class Elevator : Item
 {
     [SerializeField] private GameObject distination;
-    private GameObject itemAnim;
 
-    public void elevator() {
+    public override void item() {
 
-        StartCoroutine(anim());
-                
-        //player.transform.position = distination.transform.position;
-    }
+        Anim();
+        Invoke("Anim", 1f);
 
-    IEnumerator anim() {
-
-        itemAnim.SetActive(true);
-        yield return new WaitForSeconds(1f);
-        itemAnim.SetActive(false);
+        transform.position = distination.transform.position;
     }
 }
