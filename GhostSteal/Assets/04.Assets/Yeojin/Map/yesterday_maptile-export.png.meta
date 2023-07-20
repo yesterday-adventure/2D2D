@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -113,6 +113,18 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -152,8 +164,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1694f7eb01372d24492e468fd74cb7fc
-      internalID: -819564012
+      spriteID: 8ed3a886aa0103b418ad22d07988b85e
+      internalID: 890855208
       vertices: []
       indices: 
       edges: []
@@ -173,8 +185,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2a19df52712460419fed44ac73de534
-      internalID: 1862880881
+      spriteID: 1c57be2bf3f9c404bb16bf527fc1f656
+      internalID: 1055814090
       vertices: []
       indices: 
       edges: []
@@ -191,8 +203,8 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       yesterday_maptile-export_0: 1992578825
-      yesterday_maptile-export_2: 1862880881
-      yesterday_maptile-export_1: -819564012
+      yesterday_maptile-export_2: 1055814090
+      yesterday_maptile-export_1: 890855208
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

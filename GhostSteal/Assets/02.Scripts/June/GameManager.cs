@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
 
         player = GameObject.Find("Player");
 
+        resetPos = GameObject.Find("resetPos").transform.position;
+        
         Init();
     }
 
