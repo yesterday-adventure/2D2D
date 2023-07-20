@@ -7,7 +7,7 @@ using UnityEngine;
 public class Move : MonoBehaviour
 {
     public bool canMove = true; // 움직일 수 있는 상태인지
-    public bool isMove = true; // 움직이고 있는 상태인지
+    public bool isMove = true; // 움직이고 있는 상태인지 -> 안 쓰는데 지워버릴까
 
     private Rigidbody2D rigid;
 
@@ -35,14 +35,15 @@ public class Move : MonoBehaviour
         rigid.velocity = dir * speed;
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
+    private void OnTriggerStay2D(Collider2D other) {
         
-        Debug.Log("충돌중");
+        if (other.CompareTag("Item")) {
 
-        if (Input.GetKeyDown(KeyCode.Space)) {
+            if (Input.GetKeyDown(KeyCode.Space)) {
 
-            curItem = other.GetComponent<Item>();
-            curItem.item();
+                curItem = other.GetComponent<Item>();
+                curItem.item(gameObject); // null
+            }
         }
     }
 }

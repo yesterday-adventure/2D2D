@@ -6,7 +6,7 @@ public class Vent : Item
 {
     [SerializeField] private List<GameObject> vents = new List<GameObject>();
 
-    public override void item() {
+    public override void item(GameObject target) {
 
         foreach (GameObject v in vents)
             v.SetActive(true);

@@ -9,11 +9,13 @@ public class Switch : Item
 {
     [SerializeField] private List<CCTV> cctvs = new List<CCTV>();
 
-    public override void item() {
+    public override void item(GameObject target) {
+
+        Debug.Log("1차 성공");
 
         Anim();
 
         foreach (CCTV c in cctvs)
-            c.item();
+            c.item(target);
     }
 }

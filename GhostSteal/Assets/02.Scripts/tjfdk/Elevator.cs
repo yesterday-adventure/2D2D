@@ -8,11 +8,11 @@ public class Elevator : Item
 {
     [SerializeField] private GameObject distination;
 
-    public override void item() {
+    public override void item(GameObject target) {
 
         Anim();
         Invoke("Anim", 1f);
 
-        transform.position = distination.transform.position;
+        target.transform.position = distination.transform.position;
     }
 }

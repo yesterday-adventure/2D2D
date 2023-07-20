@@ -13,7 +13,7 @@ public class CCTV : Item
         view.transform.DOScaleX(5f, 2f).SetLoops(-1, LoopType.Yoyo); // 왜 안 되지
     }
 
-    public override void item() {
+    public override void item(GameObject target) {
 
         Anim();
         view.SetActive(!view.activeSelf);

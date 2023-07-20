@@ -5,20 +5,20 @@ using UnityEngine;
 
 public class Cabinet : Item
 {
-    private Move player;
-    SpriteRenderer s;
-    PolygonCollider2D c;
+    // SpriteRenderer s;
+    // PolygonCollider2D c;
 
-    private void Awake() {
+    // private void Awake() {
         
-        player = GameObject.Find("Player").GetComponent<Move>();
-        s = player.GetComponent<SpriteRenderer>();
-        c = player.GetComponent<PolygonCollider2D>();
-    }
-    public override void item() {
+    //     player = GameObject.Find("Player").GetComponent<Move>();
+    //     s = player.GetComponent<SpriteRenderer>();
+    //     c = player.GetComponent<PolygonCollider2D>();
+    // }
+    public override void item(GameObject target) {
 
-        player.canMove = !player.canMove;
-        s.enabled = !s.enabled;
-        c.enabled = !c.enabled;
+        // target.canMove = !target.canMove;
+        // s.enabled = !s.enabled;
+        target.GetComponent<SpriteRenderer>().enabled = !target.GetComponent<SpriteRenderer>().enabled;
+        target.GetComponent<PolygonCollider2D>().enabled = !target.GetComponent<PolygonCollider2D>().enabled; //missing
     }
 }
