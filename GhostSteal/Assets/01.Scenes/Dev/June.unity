@@ -34585,6 +34585,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d481a3c403b0ad748841853f68fd94f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLight: 1
+  player: {fileID: 922738803}
+  resetPos: {x: 0, y: 0}
   gameOverPanel: {fileID: 1607246580}
   isGameOver: 0
 --- !u!4 &1759751419
