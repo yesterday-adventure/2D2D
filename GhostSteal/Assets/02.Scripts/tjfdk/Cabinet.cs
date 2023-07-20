@@ -1,3 +1,4 @@
+using System.IO.MemoryMappedFiles;
 using System.Runtime;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,6 +19,8 @@ public class Cabinet : Item
 
         // target.canMove = !target.canMove;
         // s.enabled = !s.enabled;
+
+        target.GetComponent<Move>().canMove = !target.GetComponent<Move>().canMove;
         target.GetComponent<SpriteRenderer>().enabled = !target.GetComponent<SpriteRenderer>().enabled;
         target.GetComponent<PolygonCollider2D>().enabled = !target.GetComponent<PolygonCollider2D>().enabled; //missing
     }
