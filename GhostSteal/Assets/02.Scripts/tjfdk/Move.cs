@@ -17,6 +17,7 @@ public class Move : MonoBehaviour
     float y;
 
     [SerializeField] private Item curItem;
+    private Item oldItem;
     [SerializeField] private float speed;
     [SerializeField] private LayerMask itemLayer;
 

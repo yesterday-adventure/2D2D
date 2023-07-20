@@ -8,10 +8,17 @@ public class Pot : Item
 
     public override void item(GameObject target) {
         
-        if (isPot)
+        if (isPot) {
+
             transform.SetParent(null);
-        else
+            gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        }
+        else {
+
+            target.transform.position = transform.position;
             transform.SetParent(target.transform);
+            gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        }
 
         isPot = !isPot;
 
