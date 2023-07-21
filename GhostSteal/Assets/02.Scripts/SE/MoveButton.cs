@@ -27,23 +27,15 @@ public class MoveButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         float currentPosX = myTransform.anchoredPosition.x;
 
-        // 이동할 위치와 현재 위치가 다를 때까지 반복
-        while (Mathf.Abs(currentPosX - targetPosX) > 0.01f)
-        {
-            float duration = 0.5f; // 애니메이션의 지속 시간
-            myTransform.DOAnchorPosX(targetPosX, duration).SetEase(Ease.OutCubic);
-            yield return new WaitForSeconds(duration);
+        float duration = 0.5f; // 애니메이션의 지속 시간
+        myTransform.DOAnchorPosX(targetPosX, duration).SetEase(Ease.OutCubic);
+        yield return new WaitForSeconds(duration);
 
-            currentPosX = myTransform.anchoredPosition.x;
-        }
-
-        Debug.Log("애니메이션 재생중하고 끝남");
+        currentPosX = myTransform.anchoredPosition.x;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("마우스 들어옴");
-
         isMove = !isMove;
 
         if (isMove) // true이면
@@ -58,8 +50,6 @@ public class MoveButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log("마우스 나감");
-
         isMove = !isMove;
 
         if (!isMove) // false이면
