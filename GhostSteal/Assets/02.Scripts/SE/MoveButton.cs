@@ -41,7 +41,7 @@ public class MoveButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         if (isMove) // true¿Ã∏È
         {
             targetPosX = originPosX - moveDistance;
-            Debug.Log(targetPosX);
+            //Debug.Log(targetPosX);
         }
 
         StopAllCoroutines();
