@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     [Header("게임 관련")]
     public bool isLight = true;
+    public bool isPot = false;
     public GameObject player;
     public Vector2 resetPos;
 

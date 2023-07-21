@@ -11,10 +11,17 @@ public class Tile : Item
 
         isTile = !isTile;
 
-        if (isTile)
+        if (!isTile)
+        {
             transform.SetParent(null);
+            transform.position = new Vector3(target.transform.position.x,transform.position.y - 1f,transform.position.z);
+            GameManager.Instance.isLight = true;
+        }
         else
+        {
             transform.SetParent(target.transform);
-        // 위치 살짝 조정?
+            transform.position = new Vector3(target.transform.position.x,transform.position.y + 1f,transform.position.z);
+            GameManager.Instance.isLight = false;
+        }
     }
 }

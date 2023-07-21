@@ -9,13 +9,18 @@ public class Pot : Item
     public override void item(GameObject target) {
         
         if (isPot)
+        {
             transform.SetParent(null);
+        }
         else
+        {
+            target.transform.position = new Vector3(transform.position.x, target.transform.position.y, target.transform.position.z);
             transform.SetParent(target.transform);
+        }
 
         isPot = !isPot;
 
         target.GetComponent<Move>().pot = !target.GetComponent<Move>().pot;
-        target.GetComponent<SpriteRenderer>().enabled = !target.GetComponent<SpriteRenderer>().enabled;
+        target.GetComponentInChildren<SpriteRenderer>().enabled = !target.GetComponentInChildren<SpriteRenderer>().enabled;
     }
 }
