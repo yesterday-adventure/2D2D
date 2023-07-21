@@ -19,9 +19,9 @@ public class Cabinet : Item
 
         // target.canMove = !target.canMove;
         // s.enabled = !s.enabled;
-
+        GameManager.Instance.isLight = !GameManager.Instance.isLight;
         target.GetComponent<Move>().canMove = !target.GetComponent<Move>().canMove;
-        target.GetComponent<SpriteRenderer>().enabled = !target.GetComponent<SpriteRenderer>().enabled;
-        target.GetComponent<PolygonCollider2D>().enabled = !target.GetComponent<PolygonCollider2D>().enabled; //missing
+        target.GetComponentInChildren<SpriteRenderer>().enabled = !target.GetComponentInChildren<SpriteRenderer>().enabled;
+        target.GetComponent<BoxCollider2D>().enabled = !target.GetComponent<BoxCollider2D>().enabled; //missing
     }
 }

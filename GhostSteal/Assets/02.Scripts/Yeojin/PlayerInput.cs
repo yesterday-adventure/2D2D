@@ -14,11 +14,14 @@ public class PlayerInput : MonoBehaviour
 
     private SpriteRenderer sr;
     private PlayerAnimator animator;
+    private Move move;
 
     private void Awake()
     {
         sr = transform.Find("Visual").GetComponent<SpriteRenderer>();
         animator = transform.Find("Visual").GetComponent<PlayerAnimator>();
+
+        move = GetComponent<Move>();
 
         isRun = false; // 초기화
     }
@@ -37,10 +40,12 @@ public class PlayerInput : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space)) // Debug용, 키 바꿔도 됨
             {
-                isRun = !isRun;
+                //isRun = !isRun;
             }
 
-            if (isAttack) return; // 어택 중일 때 움직이지 않도록, 추후 삭제
+            if (isAttack || !move.CanMove) return; // 어택 중일 때 움직이지 않도록, 추후 삭제
+            
+            
             Move();
         }
     }

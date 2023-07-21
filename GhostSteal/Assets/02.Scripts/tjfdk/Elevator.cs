@@ -13,6 +13,8 @@ public class Elevator : Item
         Anim();
         Invoke("Anim", 1f);
 
-        target.transform.position = distination.transform.position;
+        target.transform.position = new Vector3(target.transform.position.x,
+            target.transform.position.y + distination.transform.position.y - transform.position.y, 
+            target.transform.position.z);
     }
 }
