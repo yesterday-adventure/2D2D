@@ -9,6 +9,7 @@ public class MoveButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     private bool isMove = false;
 
     [SerializeField] private float moveDistance; // 버튼의 이동 거리
+    [SerializeField] private float time = 0.5f;     // 애니 지속시간
 
     private float originPosX;       // 처음 위치
     private float targetPosX;       // 이동할 위치
@@ -27,9 +28,8 @@ public class MoveButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         float currentPosX = myTransform.anchoredPosition.x;
 
-        float duration = 0.5f; // 애니메이션의 지속 시간
-        myTransform.DOAnchorPosX(targetPosX, duration).SetEase(Ease.OutCubic);
-        yield return new WaitForSeconds(duration);
+        myTransform.DOAnchorPosX(targetPosX, time).SetEase(Ease.OutCubic);
+        yield return new WaitForSeconds(time);
 
         currentPosX = myTransform.anchoredPosition.x;
     }

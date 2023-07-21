@@ -8,7 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01.Scenes/Intro.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/01.Scenes/Yeojin.unity
     guid: 9e2879ab4be14b341b169ebc55d09dee
+  - enabled: 1
+    path: Assets/01.Scenes/Dev/June.unity
+    guid: 5cc310c14bdee8d4d9a895dbc8bd798b
   m_configObjects: {}
