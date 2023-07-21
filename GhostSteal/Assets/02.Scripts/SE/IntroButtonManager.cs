@@ -10,6 +10,6 @@ public class IntroButtonManager : MonoBehaviour
 
     private void NextScene()
     {
-        SceneManager.LoadScene(nextScene);
+        SceneManager.LoadScene(nextScene);  // 지정해준 씬으로 이동함
     }
 }
