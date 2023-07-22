@@ -39,13 +39,6 @@ public class Switch : Item
         }
         npc.OnCCTV(transform);
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Enemy"))
-        {
-            OnCCTV();
-        }
-    }
     public void OnCCTV()
     {
         Debug.Log("ÄÑÁ®¶ó¤¿¤¿!");

@@ -16,7 +16,7 @@ public class NpcMove : MonoBehaviour
         StartCoroutine(MoveRight(leftPos));
     }
 
-    IEnumerator MoveRight(Transform _leftpos)
+    IEnumerator MoveRight(Transform _leftpos, bool s = false)
     {
         transform.rotation = Quaternion.Euler(new Vector2(0, 180));
         while (transform.position.x > _leftpos.position.x)
@@ -24,11 +24,16 @@ public class NpcMove : MonoBehaviour
             transform.position = new Vector3(transform.position.x - speed, transform.position.y, transform.position.z);
             yield return new WaitForSeconds(0.1f);
         }
+        if(s)
+        {
+            _leftpos.GetComponent<Switch>().OnCCTV();
+        }
+
         yield return StartCoroutine(MoveLeft(rightPos));
     }
 
 
-    IEnumerator MoveLeft(Transform _rightpos)
+    IEnumerator MoveLeft(Transform _rightpos, bool s = false)
     {
         transform.rotation = Quaternion.Euler(new Vector2(0, 0));
         while (transform.position.x < _rightpos.position.x)
@@ -36,6 +41,11 @@ public class NpcMove : MonoBehaviour
             transform.position = new Vector3(transform.position.x + speed, transform.position.y, transform.position.z);
             yield return new WaitForSeconds(0.1f);
         }
+        if (s)
+        {
+            _rightpos.GetComponent<Switch>().OnCCTV();
+        }
+
         yield return StartCoroutine(MoveRight(leftPos));
     }
 
@@ -44,8 +54,8 @@ public class NpcMove : MonoBehaviour
     {
         StopAllCoroutines();
         if (transform.position.x < pos.position.x)
-            StartCoroutine(MoveLeft(pos));
+            StartCoroutine(MoveLeft(pos,true));
         else
-            StartCoroutine(MoveRight(pos));
+            StartCoroutine(MoveRight(pos,true));
     }
 }
