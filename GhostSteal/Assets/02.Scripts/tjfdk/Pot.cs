@@ -19,7 +19,7 @@ public class Pot : Item
         }
 
         isPot = !isPot;
-
+        GameManager.Instance.isPot = isPot;
         target.GetComponent<Move>().pot = !target.GetComponent<Move>().pot;
         target.GetComponentInChildren<SpriteRenderer>().enabled = !target.GetComponentInChildren<SpriteRenderer>().enabled;
     }

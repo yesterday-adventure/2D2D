@@ -5,11 +5,17 @@ using UnityEngine;
 public class Switch : Item
 {
     [SerializeField] private List<GameObject> cctvs = new List<GameObject>();
+    [SerializeField] private NpcMove npc;
     private bool isOff = false;
 
-    public override void item(GameObject target) {
+    private Transform[] lights = new Transform[100];
+    int idx = 0;
+    Transform[] obj;
 
-        if(!isOff)
+    public override void item(GameObject target)
+    {
+
+        if (!isOff)
         {
             OffCCTV();
             isOff = true;
@@ -18,31 +24,35 @@ public class Switch : Item
 
     public void OffCCTV()
     {
+        idx = 0;
         foreach (GameObject c in cctvs)
         {
-            Transform[] obj = c.GetComponentsInChildren<Transform>();
-            foreach (Transform obj2 in obj)
-            {
-                if(obj2 != c.transform)
-                {
-                    obj2.gameObject.SetActive(false);
-                }
-            }
-        }
-    }
-
-    public void OnCCTV()
-    {
-        foreach (GameObject c in cctvs)
-        {
-            Transform[] obj = c.GetComponentsInChildren<Transform>();
+            obj = c.GetComponentsInChildren<Transform>();
             foreach (Transform obj2 in obj)
             {
                 if (obj2 != c.transform)
                 {
-                    obj2.gameObject.SetActive(true);
+                    obj2.gameObject.SetActive(false);
+                    lights[idx++] = obj2;
                 }
             }
         }
+        npc.OnCCTV(transform);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            OnCCTV();
+        }
+    }
+    public void OnCCTV()
+    {
+        for(int i = 0; i <= idx; i++)
+        {
+            if (lights[i] != null)
+                lights[i].gameObject.SetActive(true);
+        }
+        isOff = false;
     }
 }

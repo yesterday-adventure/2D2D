@@ -13,29 +13,39 @@ public class NpcMove : MonoBehaviour
 
     private void Awake()
     {
-        StartCoroutine(MoveRight());
+        StartCoroutine(MoveRight(leftPos));
     }
 
-    IEnumerator MoveRight()
+    IEnumerator MoveRight(Transform _leftpos)
     {
         transform.rotation = Quaternion.Euler(new Vector2(0, 180));
-        while (transform.position.x > leftPos.position.x)
+        while (transform.position.x > _leftpos.position.x)
         {
             transform.position = new Vector3(transform.position.x - speed, transform.position.y, transform.position.z);
             yield return new WaitForSeconds(0.1f);
         }
-        yield return StartCoroutine(MoveLeft());
+        yield return StartCoroutine(MoveLeft(rightPos));
     }
 
 
-    IEnumerator MoveLeft()
+    IEnumerator MoveLeft(Transform _rightpos)
     {
         transform.rotation = Quaternion.Euler(new Vector2(0, 0));
-        while (transform.position.x < rightPos.position.x)
+        while (transform.position.x < _rightpos.position.x)
         {
             transform.position = new Vector3(transform.position.x + speed, transform.position.y, transform.position.z);
             yield return new WaitForSeconds(0.1f);
         }
-        yield return StartCoroutine(MoveRight());
+        yield return StartCoroutine(MoveRight(leftPos));
+    }
+
+
+    public void OnCCTV(Transform pos)
+    {
+        StopAllCoroutines();
+        if (transform.position.x < pos.position.x)
+            StartCoroutine(MoveLeft(pos));
+        else
+            StartCoroutine(MoveRight(pos));
     }
 }

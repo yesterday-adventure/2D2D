@@ -46,7 +46,8 @@ public class Move : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space)) {
 
                 curItem = hit.collider.gameObject.GetComponent<Item>();
-                curItem.item(gameObject); // null
+                if(curItem != null)
+                    curItem.item(gameObject); // null
             }
         }
     }

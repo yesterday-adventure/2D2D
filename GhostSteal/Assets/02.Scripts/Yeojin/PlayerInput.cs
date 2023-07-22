@@ -16,6 +16,9 @@ public class PlayerInput : MonoBehaviour
     private PlayerAnimator animator;
     private Move move;
 
+    private float moveVal;
+    public float MoveVal => moveVal;
+
     private void Awake()
     {
         sr = transform.Find("Visual").GetComponent<SpriteRenderer>();
@@ -67,11 +70,11 @@ public class PlayerInput : MonoBehaviour
 
     private void Move()
     {
-        float h = Input.GetAxisRaw("Horizontal");
+        moveVal = Input.GetAxisRaw("Horizontal");
 
-        bool checkMoving = h != 0;
+        bool checkMoving = moveVal != 0;
         isMove = checkMoving;
-        if (h != 0) sr.flipX = (h < 0);
+        if (moveVal != 0) sr.flipX = (moveVal < 0);
 
         if (!checkMoving)
         {
@@ -85,6 +88,6 @@ public class PlayerInput : MonoBehaviour
         }
 
         float currentSpeed = isRun ? speed * 2 : speed; // 달리는 속도: 원 속도의 두 배로 잡음
-        transform.position += Vector3.right * h * Time.deltaTime * currentSpeed;
+        transform.position += Vector3.right * moveVal * Time.deltaTime * currentSpeed;
     }
 }
