@@ -9,6 +9,8 @@ public class Tile : Item
 
     public override void item(GameObject target) {
 
+        SoundManager.instance.PlaySE("MP_Blop");
+
         isTile = !isTile;
 
         if (!isTile)
