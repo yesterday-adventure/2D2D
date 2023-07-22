@@ -36498,6 +36498,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1759751419}
   - component: {fileID: 1759751418}
+  - component: {fileID: 1759751420}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -36538,6 +36539,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1759751420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759751417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99ccd4ad39e06b643928b15494ae0475, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bgmSounds:
+  - soundName: BGM
+    clip: {fileID: 8300000, guid: 42a6e4e230cce4646953a0dd33a9d75a, type: 3}
+  effectSounds:
+  - soundName: pickupCoin
+    clip: {fileID: 8300000, guid: 5f8bed1135939b64799d2d6531fec17f, type: 3}
+  - soundName: MP_Mario Jumping
+    clip: {fileID: 8300000, guid: ac1061fc55c213a4fa95f0519ee709c5, type: 3}
+  - soundName: MP_Chain Clink
+    clip: {fileID: 8300000, guid: d2df6f84c3b0e1f46b9bad657d71f81a, type: 3}
+  - soundName: MP_Blop
+    clip: {fileID: 8300000, guid: c6fb2533ff9183b4b84cae758d02bc12, type: 3}
+  - soundName: hitHurt
+    clip: {fileID: 8300000, guid: 3a65af68442627d4390346f9d92bac3a, type: 3}
+  audioSourceBgmPlayers: {fileID: 0}
+  audioSourceEffectsPlayers: []
+  playSoundName: []
 --- !u!1 &1765822360
 GameObject:
   m_ObjectHideFlags: 0

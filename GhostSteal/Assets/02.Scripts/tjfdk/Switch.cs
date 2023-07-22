@@ -14,6 +14,8 @@ public class Switch : Item
 
     public override void item(GameObject target)
     {
+        SoundManager.instance.PlaySE("MP_Chain Clink");
+
         if (!isOff)
         {
             Move.Instance.curItem = null;
@@ -41,7 +43,7 @@ public class Switch : Item
     }
     public void OnCCTV()
     {
-        Debug.Log("ÄÑÁ®¶ó¤¿¤¿!");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ó¤¿¤ï¿½!");
         for(int i = 0; i <= idx; i++)
         {
             if (lights[i] != null)
