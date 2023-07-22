@@ -6,12 +6,8 @@ public class CamFollow : MonoBehaviour
 {
     GameObject _player;
 
-    private void Start()
-    {
-        _player = GameManager.Instance.player;
-    }
     void Update()
     {
-        transform.position = new Vector3(_player.transform.position.x,transform.position.y,-10);
+        transform.position = new Vector3(GameManager.Instance.player.transform.position.x,transform.position.y,-10);
     }
 }
