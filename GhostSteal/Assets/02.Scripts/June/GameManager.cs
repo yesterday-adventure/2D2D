@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
 
     public void Init()
     {
+        resetPos.x = PlayerPrefs.GetFloat("X",resetPos.x);
+        resetPos.y = PlayerPrefs.GetFloat("Y",resetPos.y);
         player.transform.position = resetPos;
         isGameOver = false;
     }

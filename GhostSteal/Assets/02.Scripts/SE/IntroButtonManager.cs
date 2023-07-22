@@ -32,6 +32,8 @@ public class IntroButtonManager : MonoBehaviour
     IEnumerator SceneGo(string nextScene)
     {
         yield return new WaitForSeconds(1.5f);
+        PlayerPrefs.DeleteKey("X");
+        PlayerPrefs.DeleteKey("Y");
         SceneManager.LoadScene(nextScene);  // 지정해준 씬으로 이동함
 
     }

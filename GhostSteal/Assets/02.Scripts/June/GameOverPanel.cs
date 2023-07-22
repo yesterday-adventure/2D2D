@@ -7,8 +7,7 @@ public class GameOverPanel : MonoBehaviour
 {
     public void Re()
     {
-        GameManager.Instance.Init();
-        transform.gameObject.SetActive(false);
+        SceneManager.LoadScene("Play");
     }
 
     public void Exit()

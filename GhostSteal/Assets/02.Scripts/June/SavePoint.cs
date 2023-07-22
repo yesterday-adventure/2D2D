@@ -8,8 +8,8 @@ public class SavePoint : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            GameManager.Instance.resetPos = new Vector3(transform.position.x, 
-                collision.transform.position.y, collision.transform.position.z);
+            PlayerPrefs.SetFloat("X", GameManager.Instance.player.transform.position.x);
+            PlayerPrefs.SetFloat("Y", GameManager.Instance.player.transform.position.y);
         }
     }
 }
