@@ -6,19 +6,13 @@ using UnityEngine;
 
 public class Cabinet : Item
 {
-    // SpriteRenderer s;
-    // PolygonCollider2D c;
+    private bool isUsed = false;
+    public override void item(GameObject target) 
+    {
+        isUsed = !isUsed;
 
-    // private void Awake() {
-        
-    //     player = GameObject.Find("Player").GetComponent<Move>();
-    //     s = player.GetComponent<SpriteRenderer>();
-    //     c = player.GetComponent<PolygonCollider2D>();
-    // }
-    public override void item(GameObject target) {
-
-        // target.canMove = !target.canMove;
-        // s.enabled = !s.enabled;
+        if (!isUsed)
+            Move.Instance.curItem = null;
         GameManager.Instance.isLight = !GameManager.Instance.isLight;
         target.GetComponent<Move>().canMove = !target.GetComponent<Move>().canMove;
         target.GetComponentInChildren<SpriteRenderer>().enabled = !target.GetComponentInChildren<SpriteRenderer>().enabled;

@@ -11,6 +11,7 @@ public class Pot : Item
         if (isPot)
         {
             transform.SetParent(null);
+            Move.Instance.curItem = null;
         }
         else
         {
