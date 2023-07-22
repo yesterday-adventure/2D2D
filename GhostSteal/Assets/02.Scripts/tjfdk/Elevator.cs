@@ -42,6 +42,8 @@ public class Elevator : MonoBehaviour
 
     public void item(GameObject target)
     {
+        SoundManager.instance.PlaySE("pickupCoin");
+        
         Anim();
         cool = 0f;
         target.transform.position = new Vector3(target.transform.position.x,

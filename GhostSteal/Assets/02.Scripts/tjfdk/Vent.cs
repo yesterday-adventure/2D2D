@@ -41,6 +41,8 @@ public class Vent : MonoBehaviour
 
     public void item(GameObject target)
     {
+        SoundManager.instance.PlaySE("MP_Mario Jumping");
+        
         Anim();
 
         if (otherVent == null)

@@ -8,6 +8,8 @@ public class Pot : Item
 
     public override void item(GameObject target) {
         
+        SoundManager.instance.PlaySE("MP_Blop");
+
         if (isPot)
         {
             transform.SetParent(null);

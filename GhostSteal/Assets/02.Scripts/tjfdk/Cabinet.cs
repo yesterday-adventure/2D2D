@@ -9,6 +9,8 @@ public class Cabinet : Item
     private bool isUsed = false;
     public override void item(GameObject target) 
     {
+        SoundManager.instance.PlaySE("hitHurt");
+
         isUsed = !isUsed;
 
         if (!isUsed)
