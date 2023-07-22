@@ -16,6 +16,8 @@ public class MoveButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     private RectTransform myTransform;
 
+    [SerializeField] private AudioSource touchSound;
+
     private void Start()
     {
         myTransform = GetComponent<RectTransform>();
@@ -23,9 +25,10 @@ public class MoveButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         targetPosX = originPosX;
     }
 
-    // 부드러운 앉기
-    IEnumerator CrouchCoroutine()
+    IEnumerator MoveCoroutine()
     {
+        touchSound.Play();
+
         float currentPosX = myTransform.anchoredPosition.x;
 
         myTransform.DOAnchorPosX(targetPosX, time).SetEase(Ease.OutCubic);
@@ -45,7 +48,7 @@ public class MoveButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
 
         StopAllCoroutines();
-        StartCoroutine(CrouchCoroutine());
+        StartCoroutine(MoveCoroutine());
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -58,6 +61,6 @@ public class MoveButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
 
         StopAllCoroutines();
-        StartCoroutine(CrouchCoroutine());
+        StartCoroutine(MoveCoroutine());
     }
 }

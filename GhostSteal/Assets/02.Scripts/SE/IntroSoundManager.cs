@@ -13,6 +13,11 @@ public class IntroSoundManager : MonoBehaviour
     [SerializeField]
     private Sprite effectOn, effectOff;
 
+    [SerializeField]
+    private List<AudioSource> soundSource = new List<AudioSource>();
+    [SerializeField]
+    private List<AudioSource> effectSource = new List<AudioSource>();
+
     private bool sound = true, effect = true;
 
     public void Sound()
@@ -22,10 +27,18 @@ public class IntroSoundManager : MonoBehaviour
         if (sound)
         {
             SoundButton.sprite = soundOn;
+            foreach (var s in soundSource)
+            {
+                s.volume = 1;
+            }
         }
         else
         {
             SoundButton.sprite = soundOff;
+            foreach (var s in soundSource)
+            {
+                s.volume = 0;
+            }
         }
     }
 
@@ -36,10 +49,18 @@ public class IntroSoundManager : MonoBehaviour
         if (effect)
         {
             effectButton.sprite = effectOn;
+            foreach (var s in effectSource)
+            {
+                s.volume = 1;
+            }
         }
         else
         {
             effectButton.sprite= effectOff;
+            foreach (var s in effectSource)
+            {
+                s.volume = 0;
+            }
         }
     }
 }
