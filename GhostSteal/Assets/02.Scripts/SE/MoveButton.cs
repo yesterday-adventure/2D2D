@@ -9,11 +9,14 @@ public class MoveButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     private bool isMove = false;
 
     [SerializeField] private float moveDistance; // 버튼의 이동 거리
+    [SerializeField] private float time = 0.5f;     // 애니 지속시간
 
     private float originPosX;       // 처음 위치
     private float targetPosX;       // 이동할 위치
 
     private RectTransform myTransform;
+
+    [SerializeField] private AudioSource touchSound;
 
     private void Start()
     {
@@ -22,14 +25,14 @@ public class MoveButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         targetPosX = originPosX;
     }
 
-    // 부드러운 앉기
-    IEnumerator CrouchCoroutine()
+    IEnumerator MoveCoroutine()
     {
+        touchSound.Play();
+
         float currentPosX = myTransform.anchoredPosition.x;
 
-        float duration = 0.5f; // 애니메이션의 지속 시간
-        myTransform.DOAnchorPosX(targetPosX, duration).SetEase(Ease.OutCubic);
-        yield return new WaitForSeconds(duration);
+        myTransform.DOAnchorPosX(targetPosX, time).SetEase(Ease.OutCubic);
+        yield return new WaitForSeconds(time);
 
         currentPosX = myTransform.anchoredPosition.x;
     }
@@ -45,7 +48,7 @@ public class MoveButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
 
         StopAllCoroutines();
-        StartCoroutine(CrouchCoroutine());
+        StartCoroutine(MoveCoroutine());
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -58,6 +61,6 @@ public class MoveButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
 
         StopAllCoroutines();
-        StartCoroutine(CrouchCoroutine());
+        StartCoroutine(MoveCoroutine());
     }
 }

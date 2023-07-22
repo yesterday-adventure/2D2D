@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class IntroMovie : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class IntroMovie : MonoBehaviour
             // 인트로무비 영상 재생하기
 
             PlayerPrefs.SetInt("introMovie", 1);
+
+            SceneManager.LoadScene("Moves");
         }
     }
 
