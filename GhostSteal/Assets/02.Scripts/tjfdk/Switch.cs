@@ -1,21 +1,48 @@
-using System.ComponentModel;
-using System.Globalization;
-using System.Runtime.CompilerServices;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Switch : Item
 {
-    [SerializeField] private List<CCTV> cctvs = new List<CCTV>();
+    [SerializeField] private List<GameObject> cctvs = new List<GameObject>();
+    private bool isOff = false;
 
     public override void item(GameObject target) {
 
-        Debug.Log("1차 성공");
+        if(!isOff)
+        {
+            OffCCTV();
+            isOff = true;
+        }
+    }
 
-        Anim();
+    public void OffCCTV()
+    {
+        foreach (GameObject c in cctvs)
+        {
+            Transform[] obj = c.GetComponentsInChildren<Transform>();
+            foreach (Transform obj2 in obj)
+            {
+                if(obj2 != c.transform)
+                {
+                    obj2.gameObject.SetActive(false);
+                }
+            }
+        }
+    }
 
-        foreach (CCTV c in cctvs)
-            c.item(target);
+    public void OnCCTV()
+    {
+        foreach (GameObject c in cctvs)
+        {
+            Transform[] obj = c.GetComponentsInChildren<Transform>();
+            foreach (Transform obj2 in obj)
+            {
+                if (obj2 != c.transform)
+                {
+                    obj2.gameObject.SetActive(true);
+                }
+            }
+        }
     }
 }
