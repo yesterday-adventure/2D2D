@@ -16,6 +16,7 @@ public class Tile : Item
             transform.SetParent(null);
             transform.position = new Vector3(target.transform.position.x,transform.position.y - 1f,transform.position.z);
             GameManager.Instance.isLight = true;
+            Move.Instance.curItem = null;
         }
         else
         {

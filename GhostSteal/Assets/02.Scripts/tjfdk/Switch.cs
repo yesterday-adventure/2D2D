@@ -14,9 +14,9 @@ public class Switch : Item
 
     public override void item(GameObject target)
     {
-
         if (!isOff)
         {
+            Move.Instance.curItem = null;
             OffCCTV();
             isOff = true;
         }

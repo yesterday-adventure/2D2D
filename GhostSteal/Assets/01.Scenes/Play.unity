@@ -4356,7 +4356,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canMove: 1
   pot: 0
-  vent: 1
+  vent: 0
+  elevator: 0
   curItem: {fileID: 0}
   speed: 0
   itemLayer:
@@ -56040,6 +56041,10 @@ PrefabInstance:
     - target: {fileID: 5162871917793831541, guid: 5f37f599067905642b84c4e5b5a346a6, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5162871917793831543, guid: 5f37f599067905642b84c4e5b5a346a6, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 5162871918209307628, guid: 5f37f599067905642b84c4e5b5a346a6, type: 3}
       propertyPath: m_RootOrder

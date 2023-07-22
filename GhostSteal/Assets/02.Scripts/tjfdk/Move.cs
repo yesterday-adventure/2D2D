@@ -6,9 +6,13 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
+    public static Move Instance;
+
     public bool canMove = true; // 움직일 수 있는 상태인지
     public bool pot = false; // 움직이고 있는 상태인지 -> 안 쓰는데 지워버릴까
+    
     public bool vent = false; // 밴트 타고있는지 아닌지
+    public bool elevator = false;
 
     private Rigidbody2D rigid;
     private BoxCollider2D col;
@@ -16,7 +20,7 @@ public class Move : MonoBehaviour
     float x;
     float y;
 
-    [SerializeField] private Item curItem;
+    public Item curItem;
     public bool CanMove => canMove;
     [SerializeField] private float speed;
     [SerializeField] private LayerMask itemLayer;
@@ -24,14 +28,22 @@ public class Move : MonoBehaviour
     Vector3 dir;
     Vector3 raycastOrigin;
 
-    private void Awake() {
-        
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+        {
+            Debug.LogError($"{transform} : Move is multiple running");
+        }
+
         rigid = GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
     }
 
-    private void Update() {
-        
+    private void Update()
+    {
+
         if (canMove)
             move();
 
@@ -41,18 +53,21 @@ public class Move : MonoBehaviour
         raycastOrigin = transform.position;
         RaycastHit2D hit = Physics2D.CircleCast(raycastOrigin, 0.5f, Vector2.zero, 0f, itemLayer);
 
-        if (hit) {
+        if (hit)
+        {
 
-            if (Input.GetKeyDown(KeyCode.Space)) {
-
-                curItem = hit.collider.gameObject.GetComponent<Item>();
-                if(curItem != null)
+            if (Input.GetKeyDown(KeyCode.Space) && !elevator && !vent)
+            {
+                if (curItem == null)
+                    curItem = hit.collider.gameObject.GetComponent<Item>();
+                if (curItem != null)
                     curItem.item(gameObject); // null
             }
         }
     }
 
-    private void move() {
+    private void move()
+    {
 
         //x = Input.GetAxis("Horizontal");
         //y = Input.GetAxis("Vertical");
@@ -65,7 +80,8 @@ public class Move : MonoBehaviour
         //rigid.velocity = dir.normalized * speed;
     }
 
-    void OnDrawGizmos() {
+    void OnDrawGizmos()
+    {
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(raycastOrigin, 0.5f);
