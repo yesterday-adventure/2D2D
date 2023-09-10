@@ -39,9 +39,7 @@ public class EffectsManager : MonoBehaviour
         if (instance == null)                   // 최초 생성(하나만 존재)
         {
             instance = this;                    // 자기 자신 할당
-            DontDestroyOnLoad(gameObject);      // 씬이 전환되어도 파괴되지 않음
         }
-
         else                                    // 단 하나만 존재하게끔 새로 생긴 Sound Manager 오브젝트 인스턴스일 경우엔 파괴
         {
             Destroy(this.gameObject);
