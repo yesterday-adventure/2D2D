@@ -43,7 +43,6 @@ public class Switch : Item
     }
     public void OnCCTV()
     {
-        Debug.Log("�����󤿤�!");
         for(int i = 0; i <= idx; i++)
         {
             if (lights[i] != null)
